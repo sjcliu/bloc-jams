@@ -29,20 +29,6 @@ var albumMarconi = {
      ]
  };
 
- var albumMine = {
-      title: 'Lion Heart',
-      artist: 'SNSD',
-      label: 'SM',
-      year: '2016',
-      albumArtUrl: 'assets/images/album_covers/22.jpg',
-      songs: [
-          { title: 'Lion Heart', duration: '3:44' },
-          { title: 'You Think', duration: '3:09' },
-          { title: 'Party', duration: '3:13'},
-          { title: 'One Afternoon', duration: '3:35' },
-          { title: 'Paradise', duration: '3:50'}
-      ]
-  };
 // Assigns previously static song row template to a variable called template and return it.
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -77,19 +63,5 @@ var albumMarconi = {
  };
 
  window.onload = function() {
-   setCurrentAlbum(albumMine)
-
-   // get access to albums via indices.
-   var albums = [albumPicasso, albumMarconi, albumMine];
-   var index = 1;
-   // goes through albums when cover art clicked. albumImage from line 62.
-   albumImage.addEventListener("click", function(event) {
-     setCurrentAlbum(albums[index]);
-     // adds 1 to the index once setCurrentAlbum executes.
-     index++;
-     // when index reaches albums.length the index resets to 0.
-     if (index == albums.length) {
-       index = 0;
-     }
-   });
+   setCurrentAlbum(albumPicasso)
  };
