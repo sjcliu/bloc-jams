@@ -28,6 +28,21 @@ var albumMarconi = {
          { title: 'Wrong phone number', duration: '2:15'}
      ]
  };
+
+ var albumMine = {
+      title: 'Lion Heart',
+      artist: 'SNSD',
+      label: 'SM',
+      year: '2016',
+      albumArtUrl: 'assets/images/album_covers/22.jpg',
+      songs: [
+          { title: 'Lion Heart', duration: '3:44' },
+          { title: 'You Think', duration: '3:09' },
+          { title: 'Party', duration: '3:13'},
+          { title: 'One Afternoon', duration: '3:35' },
+          { title: 'Paradise', duration: '3:50'}
+      ]
+  };
 // Assigns previously static song row template to a variable called template and return it.
  var createSongRow = function(songNumber, songName, songLength) {
      var template =
@@ -40,14 +55,14 @@ var albumMarconi = {
 
      return template;
  };
+ //select all the HTML elements required to display ont he album page.
+ var albumTitle = document.getElementsByClassName('album-view-title')[0];
+ var albumArtist = document.getElementsByClassName('album-view-artist')[0];
+ var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
+ var albumImage = document.getElementsByClassName('album-cover-art')[0];
+ var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
 
  var setCurrentAlbum = function(album) {
-   //select all the HTML elements required to display ont he album page.
-   var albumTitle = document.getElementsByClassName('album-view-title')[0];
-   var albumArtist = document.getElementsByClassName('album-view-artist')[0];
-   var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
-   var albumImage = document.getElementsByClassName('album-cover-art')[0];
-   var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
    //
    albumTitle.firstChild.nodeValue = album.title;
    albumArtist.firstChild.nodeValue = album.artist;
@@ -62,5 +77,19 @@ var albumMarconi = {
  };
 
  window.onload = function() {
-   setCurrentAlbum(albumMarconi)
+   setCurrentAlbum(albumMine)
+
+   // get access to albums via indices.
+   var albums = [albumPicasso, albumMarconi, albumMine];
+   var index = 1;
+   // goes through albums when cover art clicked. albumImage from line 62.
+   albumImage.addEventListener("click", function(event) {
+     setCurrentAlbum(albums[index]);
+     // adds 1 to the index once setCurrentAlbum executes.
+     index++;
+     // when index reaches albums.length the index resets to 0.
+     if (index == albums.length) {
+       index = 0;
+     }
+   });
  };
