@@ -83,7 +83,7 @@ var albumMarconi = {
          currentParent = currentParent.parentElement
        }
        return currentParent;
-     };
+     }
    };
 
    var getSongItem = function(element) {
