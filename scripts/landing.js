@@ -9,10 +9,10 @@
       });
     };
     //loops through the elements with the class name point and applies the revealPoint CSS styles
-    $.each('.point'), revealPoint;
+    $.each($('.point'), revealPoint);
     };
-  };
-  $(window).load = function() {
+
+  $(window).load(function() {
     // Automatically animate the points on a tall screen where scrolling can't trigger the animation
    if ($(window).height() > 950) {
        animatePoints();
