@@ -31,7 +31,7 @@
          var $volumeThumb = $('.volume .thumb');
          $volumeFill.width(currentVolume + '%');
          $volumeThumb.css({left: currentVolume + '%'});
-         
+
          $(this).html(pauseButtonTemplate);
          updatePlayerBarSong();
        }
@@ -256,14 +256,14 @@ var previousSong = function() {
 
 var togglePlayFromPlayerBar = function() {
   if (currentSoundFile.isPaused()) {
-  $(this).html();
-  getSongNumberCell(currentlyPlayingSongNumber).html(playerBaPauseButton);
+  $(this).html(playerBarPauseButton);
+  getSongNumberCell(currentlyPlayingSongNumber).html(playerBarPauseButton);
   currentSoundFile.play();
-} else {
-   $(this).html(playButtonTemplate);
+  } else {
+   $(this).html(playerBarPlayButton);
    getSongNumberCell(currentlyPlayingSongNumber).html(playerBarPlayButton);
    currentSoundFile.pause();
-}
+  }
 };
 
  var setSong = function(songNumber) {
