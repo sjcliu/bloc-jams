@@ -31,7 +31,7 @@
          var $volumeThumb = $('.volume .thumb');
          $volumeFill.width(currentVolume + '%');
          $volumeThumb.css({left: currentVolume + '%'});
-         
+
          $(this).html(pauseButtonTemplate);
          updatePlayerBarSong();
        }
@@ -266,7 +266,7 @@ var togglePlayFromPlayerBar = function() {
 }
 };
 
- var setSong = function(songNumber) {
+var setSong = function(songNumber) {
    if (currentSoundFile) {
      currentSoundFile.stop();
    };
@@ -298,6 +298,17 @@ var seek = function(time) {
    return $('.song-item-number[data-song-number="' + number + '"]');
  };
 
+var setCurrentTimeInPlayerBar = function(currentTime) {
+
+};
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+
+};
+
+var filterTimeCode = function(timeInSeconds) {
+
+};
  //Album button templates
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
  var pauseButtonTemplate = '<a class="album-song-button"><span class= "ion-pause"></span></a>';
