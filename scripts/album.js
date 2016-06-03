@@ -4,7 +4,7 @@
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' +songNumber+ '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + filterTimeCode(songLength) + '</td>'
       + '</tr>'
       ;
 
@@ -108,6 +108,7 @@
              var $seekBar = $('.seek-control .seek-bar');
 
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             setCurrentTimeInPlayerBar(this.getTime());
          });
      }
  };
@@ -181,6 +182,7 @@
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
+    setTotalTimeInPlayerBar(currentSongFromAlbum.duration);
   };
 
 var nextSong = function() {
@@ -256,14 +258,14 @@ var previousSong = function() {
 
 var togglePlayFromPlayerBar = function() {
   if (currentSoundFile.isPaused()) {
-  $(this).html();
-  getSongNumberCell(currentlyPlayingSongNumber).html(playerBaPauseButton);
-  currentSoundFile.play();
-} else {
-   $(this).html(playButtonTemplate);
-   getSongNumberCell(currentlyPlayingSongNumber).html(playerBarPlayButton);
-   currentSoundFile.pause();
-}
+      $(this).html(playerBarPauseButton);
+      getSongNumberCell(currentlyPlayingSongNumber).html(playerBarPauseButton);
+      currentSoundFile.play();
+    } else {
+       $(this).html(playerBarPlayButton);
+       getSongNumberCell(currentlyPlayingSongNumber).html(playerBarPlayButton);
+       currentSoundFile.pause();
+    }
 };
 
 var setSong = function(songNumber) {
@@ -299,15 +301,17 @@ var seek = function(time) {
  };
 
 var setCurrentTimeInPlayerBar = function(currentTime) {
-
+    $(".current-time").text(filterTimeCode(currentTime))
 };
 
 var setTotalTimeInPlayerBar = function(totalTime) {
-
+    $(".total-time").text(filterTimeCode(totalTime))
 };
 
 var filterTimeCode = function(timeInSeconds) {
-
+    minutes = Math.floor(parseFloat(timeInSeconds)/60)
+    seconds = Math.floor(timeInSeconds - (minutes*60))
+    return minutes +":"+ seconds
 };
  //Album button templates
  var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></span></a>';
